@@ -9,21 +9,21 @@
 #ifndef __CONTROLLER_H__
 #define __CONTROLLER_H__
 
-#include <vector>
+#include <QVector>
 
 template <class T>
 class Controller {
   private:
-    std::vector<T *> elems;
-    std::string fileName;
+    QVector<T *> elems;
+    QString fileName;
 
     void readFile();
 
   public:
-    Controller(const std::string & fileName);
+    Controller(const QString & fileName);
     virtual ~Controller(void);
 
-    std::vector<T *> & getElems();
+    QVector<T *> & getElems();
 
     void addElem    (T * elem);
     bool removeElem (T * elem);

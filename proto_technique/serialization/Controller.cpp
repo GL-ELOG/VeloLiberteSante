@@ -6,10 +6,11 @@
  * @Date 14-10-2013
  *
  */
-#include <vector>
-#include <string>
+#include <QVector>
+#include <QString>
 #include <algorithm>    // find()
-#include <fstream>
+#include <QFile>
+#include <QDataStream>
 
 #include "Controller.h"
 #include "Bike.h"
@@ -17,10 +18,8 @@
 #define TEMPL template<class T>
 #define CONTROLLER Controller<T>
 
-#include <iostream> // TODO remove
-
 TEMPL
-CONTROLLER::Controller(const std::string & fileName)
+CONTROLLER::Controller(const QString & fileName)
 : fileName (fileName)
 {
     readFile();
@@ -28,7 +27,7 @@ CONTROLLER::Controller(const std::string & fileName)
 
 TEMPL
 CONTROLLER::~Controller() {
-    for (unsigned i(0); i < elems.size(); ++i) {
+    for (int i(0); i < elems.size(); ++i) {
         delete elems[i];
         elems[i] = 0;
     }
@@ -36,15 +35,20 @@ CONTROLLER::~Controller() {
 
 TEMPL
 void CONTROLLER::readFile() {
-    std::ifstream is (fileName.c_str());
-    for (Bike b; (is >> b); ) {
+    QFile file (fileName);
+    file.open(QIODevice::ReadOnly);
+    QDataStream in (&file);
+    Bike b;
+    in >> b;
+    for (; QDataStream::Ok == in.status(); ) {
         elems.push_back(new Bike(b));
+        in >> b;
     }
-    is.close();
+    file.close();
 }
 
 TEMPL
-std::vector<T *> & CONTROLLER::getElems() { return elems; }
+QVector<T *> & CONTROLLER::getElems() { return elems; }
 
 TEMPL
 void CONTROLLER::addElem(T * elem) {
@@ -53,7 +57,7 @@ void CONTROLLER::addElem(T * elem) {
 
 TEMPL
 bool CONTROLLER::removeElem(T * elem) {
-    typename std::vector<T*>::iterator it =
+    typename QVector<T*>::iterator it =
                     std::find(elems.begin(), elems.end(), elem);
 
     if (it == elems.end()) return false;

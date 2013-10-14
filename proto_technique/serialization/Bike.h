@@ -9,20 +9,20 @@
 #ifndef __BIKE_H__
 #define __BIKE_H__
 
-#include <string>
-#include <iostream>
+#include <QString>
+#include <QDataStream>
 
 #include "Serializable.h"
 
 class Bike : public Serializable {
   protected:
     int id;
-    std::string libelle;
-    virtual std::ostream & serialize   (std::ostream & os) const;
-    virtual std::istream & deserialize (std::istream & is) ;
+    QString libelle;
+    virtual QDataStream & serialize   (QDataStream & os) const;
+    virtual QDataStream & deserialize (QDataStream & is) ;
 
   public:
-    Bike(int id = 0, std::string libelle = "");
+    Bike(int id = 0, QString libelle = "");
     virtual ~Bike();
 
     int getId();

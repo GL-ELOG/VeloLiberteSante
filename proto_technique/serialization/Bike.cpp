@@ -7,14 +7,12 @@
  *
  */
 
-#include <string>
-#include <iostream>
+#include <QString>
+#include <QDataStream>
 
 #include "Bike.h"
 
-using namespace std;
-
-Bike::Bike(int id, string libelle)
+Bike::Bike(int id, QString libelle)
 : id (id), libelle (libelle)
 {}
 
@@ -24,15 +22,16 @@ int Bike::getId() { return this->id; }
 
 void Bike::setId(int id) { this->id = id; }
 
-ostream & Bike::serialize (ostream & os) const {
-    return os << "VELO " << this->id << ' ' << this->libelle;
+QDataStream & Bike::serialize (QDataStream & os) const {
+    return os << "VELO " << this->id << ' ' << this->libelle.constData();
 }
 
-istream & Bike::deserialize (istream & is) {
-    string str;
-    is >> str;
-    if (str != "VELO") {
-        is.setstate(ios::failbit);
+QDataStream & Bike::deserialize (QDataStream & is) {
+    char ch [5];
+    is.readRawData(ch, 4);
+    ch[4] = '\0';
+    if (0 != strcmp(ch, "VELO")) {
+        is.setStatus(QDataStream::ReadCorruptData);
         return is;
     }
     return is >> this->id >> this->libelle;

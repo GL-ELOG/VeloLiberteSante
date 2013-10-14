@@ -7,8 +7,9 @@
  *
  */
 
-#include <iostream>
+#include <QDebug>
 #include <sstream>
+#include <iostream>
 
 #include "Bike.h"
 #include "Controller.h"
@@ -34,13 +35,14 @@ int main() {
         Controller<Bike> bikeController ("bikes.txt");
         bikeController.addElem(b2);
 
-        vector<Bike*> bikes = bikeController.getElems();
-        cout << "controller has " << bikes.size() << " bikes" << endl;
-        for (unsigned i(0); i < bikes.size(); ++i) {
-            cout << *bikes[i] << endl;
+        QVector<Bike*> bikes = bikeController.getElems();
+        /* qDebug() << "controller has " << bikes.size() << " bikes" << endl; */
+        for (int i(0); i < bikes.size(); ++i) {
+            // :'(
+            /* qDebug() << *bikes[i] << endl; */
         }
     }
-    cout << "et mainteant b2 est mort : " << b2 << endl;
+    /* qDebug() << "et mainteant b2 est mort : " << b2 << endl; */
     /* controller */
 
     return 0;

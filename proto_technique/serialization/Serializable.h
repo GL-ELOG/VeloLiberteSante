@@ -9,25 +9,25 @@
 #ifndef __SERIALIZABLE_H__
 #define __SERIALIZABLE_H__
 
-#include <iostream>
+#include <QDataStream>
 
 class Serializable {
   protected:
-    virtual std::ostream & serialize   (std::ostream & os) const = 0;
-    virtual std::istream & deserialize (std::istream & is) = 0;
+    virtual QDataStream & serialize   (QDataStream & os) const = 0;
+    virtual QDataStream & deserialize (QDataStream & is) = 0;
 
   public:
     virtual ~Serializable() {}
-    friend std::ostream & operator << (std::ostream & os, const Serializable & obj);
-    friend std::istream & operator >> (std::istream & is, Serializable & obj);
+    friend QDataStream & operator << (QDataStream & os, const Serializable & obj);
+    friend QDataStream & operator >> (QDataStream & is, Serializable & obj);
 
 };
 
-inline std::ostream & operator << (std::ostream & os, const Serializable & obj) {
+inline QDataStream & operator << (QDataStream & os, const Serializable & obj) {
     return obj.serialize(os);
 }
 
-inline std::istream & operator >> (std::istream & is, Serializable & obj) {
+inline QDataStream & operator >> (QDataStream & is, Serializable & obj) {
     return obj.deserialize(is);
 }
 

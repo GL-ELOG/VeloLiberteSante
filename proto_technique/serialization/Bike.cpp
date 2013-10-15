@@ -23,14 +23,15 @@ int Bike::getId() { return this->id; }
 void Bike::setId(int id) { this->id = id; }
 
 QDataStream & Bike::serialize (QDataStream & os) const {
-    return os << "VELO " << this->id << ' ' << this->libelle.constData();
+    return os << QString("VELO")
+              << (qint16)this->id
+              << this->libelle;
 }
 
 QDataStream & Bike::deserialize (QDataStream & is) {
-    char ch [5];
-    is.readRawData(ch, 4);
-    ch[4] = '\0';
-    if (0 != strcmp(ch, "VELO")) {
+    QString str;
+    is >> str;
+    if (0 != str.compare(QString("VELO"))) {
         is.setStatus(QDataStream::ReadCorruptData);
         return is;
     }

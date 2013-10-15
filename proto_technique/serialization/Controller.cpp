@@ -27,6 +27,7 @@ CONTROLLER::Controller(const QString & fileName)
 
 TEMPL
 CONTROLLER::~Controller() {
+    writeFile();
     for (int i(0); i < elems.size(); ++i) {
         delete elems[i];
         elems[i] = 0;
@@ -38,17 +39,26 @@ void CONTROLLER::readFile() {
     QFile file (fileName);
     file.open(QIODevice::ReadOnly);
     QDataStream in (&file);
-    Bike b;
-    in >> b;
-    for (; QDataStream::Ok == in.status(); ) {
-        elems.push_back(new Bike(b));
-        in >> b;
+    for (T t; QDataStream::Ok == (in >> t).status(); ) {
+        elems.push_back(new T(t));
     }
     file.close();
 }
 
 TEMPL
-QVector<T *> & CONTROLLER::getElems() { return elems; }
+void CONTROLLER::writeFile() {
+    QFile file (fileName);
+    file.open(QIODevice::WriteOnly);
+    QDataStream out (&file);
+    for (typename QVector<T*>::iterator it (elems.begin());
+         it != elems.end(); ++it) {
+        out << **it;
+    }
+    file.close();
+}
+
+TEMPL
+QVector<T*> & CONTROLLER::getElems() { return elems; }
 
 TEMPL
 void CONTROLLER::addElem(T * elem) {

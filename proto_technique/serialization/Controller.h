@@ -18,12 +18,13 @@ class Controller {
     QString fileName;
 
     void readFile();
+    void writeFile();
 
   public:
     Controller(const QString & fileName);
     virtual ~Controller(void);
 
-    QVector<T *> & getElems();
+    QVector<T*> & getElems();
 
     void addElem    (T * elem);
     bool removeElem (T * elem);

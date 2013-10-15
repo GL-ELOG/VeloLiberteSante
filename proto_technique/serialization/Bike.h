@@ -16,7 +16,7 @@
 
 class Bike : public Serializable {
   protected:
-    int id;
+    qint16 id;
     QString libelle;
     virtual QDataStream & serialize   (QDataStream & os) const;
     virtual QDataStream & deserialize (QDataStream & is) ;

@@ -13,7 +13,11 @@
 #include <QDataStream>
 
 #include "Controller.h"
+
+// look at the bottom of this file
 #include "Bike.h"
+#include "Station.h"
+#include "Emplacement.h"
 
 #define TEMPL template<class T>
 #define CONTROLLER Controller<T>
@@ -103,4 +107,9 @@ bool CONTROLLER::removeElem(T * elem) {
     return true;
 }
 
-template class Controller<Bike>; // ok for our little project
+// we instanciate our generic controller with the class we will be using.
+// it's not the way to do because now Controller.cpp is polluated w/
+// class he shouldn't know about, but it's ok for our little project
+template class Controller<Bike>;
+template class Controller<Station>;
+template class Controller<Emplacement>;

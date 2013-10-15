@@ -6,8 +6,8 @@
  * @Date 14-10-2013
  *
  */
-#ifndef __CONTROLLER_H__
-#define __CONTROLLER_H__
+#ifndef CONTROLLER_H
+#define CONTROLLER_H
 
 #include <QVector>
 
@@ -31,4 +31,4 @@ class Controller {
 
 };
 
-#endif /* __CONTROLLER_H__ */
+#endif /* CONTROLLER_H */

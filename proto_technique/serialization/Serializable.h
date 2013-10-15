@@ -6,8 +6,8 @@
  * @Date 13-10-2013
  *
  */
-#ifndef __SERIALIZABLE_H__
-#define __SERIALIZABLE_H__
+#ifndef SERIALIZABLE_H
+#define SERIALIZABLE_H
 
 #include <QDataStream>
 
@@ -31,4 +31,4 @@ inline QDataStream & operator >> (QDataStream & is, Serializable & obj) {
     return obj.deserialize(is);
 }
 
-#endif /* __SERIALIZABLE_H__ */
+#endif /* SERIALIZABLE_H */

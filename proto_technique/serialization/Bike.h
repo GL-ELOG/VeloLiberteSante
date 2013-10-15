@@ -6,8 +6,8 @@
  * @Date 13-10-2013
  *
  */
-#ifndef __BIKE_H__
-#define __BIKE_H__
+#ifndef BIKE_H
+#define BIKE_H
 
 #include <QString>
 #include <QDataStream>
@@ -75,4 +75,4 @@ class Bike : public Serializable {
 
 };
 
-#endif /* __BIKE_H__ */
+#endif /* BIKE_H */

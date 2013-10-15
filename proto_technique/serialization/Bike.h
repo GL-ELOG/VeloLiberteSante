@@ -9,6 +9,7 @@
 #ifndef BIKE_H
 #define BIKE_H
 
+#include <QDate>
 #include <QString>
 #include <QDataStream>
 
@@ -19,7 +20,8 @@ class Bike : public Serializable {
   protected:
 
     qint16 id;
-    QString libel;
+    QDate commissioningDate;
+    quint16 kmTravelled;
 
     /*!
      * \brief serialize a Bike
@@ -40,9 +42,12 @@ class Bike : public Serializable {
     /*!
      * \brief Constructs a Bike
      * \param id
-     * \param libel
+     * \param commissioningDate
+     * \param kmTravelled
      */
-    Bike(int id = 0, QString libel = "");
+    Bike(qint16 id = 0,
+         QDate commissioningDate = QDate(),
+         quint16 kmTravelled = 0);
 
     /*!
      * \brief Destructs the Bike
@@ -53,25 +58,37 @@ class Bike : public Serializable {
      * \brief getter of the field id
      * \return the id of the bike
      */
-    int getId();
+    qint16 getId();
 
     /*!
      * \brief the setter of the field id
      * \param the new id
      */
-    void setId(int);
+    void setId(qint16);
 
     /*!
-     * \brief getter of the field libel
-     * \return the libel of the bike
+     * \brief getter of the field commissionningDate
+     * \return the commissionningDate of the bike
      */
-    QString & getLibel();
+    QDate & getCommissioningDate();
 
     /*!
-     * \brief the setter of the field libel
-     * \param the new libel
+     * \brief the setter of the field commissionningDate
+     * \param the new commissioningDate
      */
-    void setLibel(QString &);
+    void setCommissioningDate(QDate &);
+
+    /*!
+     * \brief getter of the field kmTravelled
+     * \return the kmTravelled of the bike
+     */
+    quint16 getKmTravelled();
+
+    /*!
+     * \brief the setter of the field kmTravelled
+     * \param the new kmTravelled
+     */
+    void setKmTravelled(quint16);
 
 };
 

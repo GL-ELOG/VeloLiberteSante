@@ -9,12 +9,13 @@
 
 #include <QFile>
 #include <QDataStream>
-#include <QDebug>
 
 #include "Bike.h"
 #include "Controller.h"
 
-using namespace std;
+#include <iostream>
+using std::cout;
+using std::endl;
 
 namespace {
 
@@ -23,10 +24,11 @@ namespace {
         file.open(QIODevice::WriteOnly);
         QDataStream out (&file);
 
-        for (unsigned i(0); i < 5; ++i) {
+        for (unsigned i(1); i < 5; ++i) {
             out << QString("VELO")
-                << (qint16)i
-                << QString("le velo no ").append(QString::number(i));
+                << (quint16)i
+                << QDate::currentDate()
+                << (quint16)(i*100);
         }
         file.flush();
         file.close();
@@ -37,18 +39,15 @@ namespace {
 int main() {
     /* generate(); */
 
-    Bike b0 (1, "un_velo");
-    Bike b1 (2, "un_autre_velo");
-
-    /* serialization * /
-    stringstream sstr;
-    sstr << b0;
-    cout << "dans sstr se trouve : " << sstr.str() << endl;
-    sstr >> b1;
-    cout << "on a reussi a extraire b1 : " << b1 << endl;
-    /* serialization */
-
     Controller<Bike> bikeControll ("bikes.txt");
+    QVector<Bike*> bikes = bikeControll.getElems();
+    for (int i(0); i < bikes.size(); ++i) {
+        cout << "Bike :" << '\n'
+             << "\tid=" << bikes[i]->getId() << '\n'
+             << "\tcommDate="
+             << bikes[i]->getCommissioningDate().toString().toStdString() << '\n'
+             << "\tkmTravelled=" << bikes[i]->getKmTravelled() << endl;
+    }
 
     return 0;
 }

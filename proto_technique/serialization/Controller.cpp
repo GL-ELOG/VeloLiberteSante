@@ -18,6 +18,10 @@
 #define TEMPL template<class T>
 #define CONTROLLER Controller<T>
 
+/*!
+ * \brief Constructs a Controller
+ * \param the file name where elements will be stored
+ */
 TEMPL
 CONTROLLER::Controller(const QString & fileName)
 : fileName (fileName)
@@ -25,6 +29,9 @@ CONTROLLER::Controller(const QString & fileName)
     readFile();
 }
 
+/*!
+ * \brief Destructs the Controller
+ */
 TEMPL
 CONTROLLER::~Controller() {
     writeFile();
@@ -34,6 +41,9 @@ CONTROLLER::~Controller() {
     }
 }
 
+/*!
+ * \brief read the whole file and fill deserialized elements in elems
+ */
 TEMPL
 void CONTROLLER::readFile() {
     QFile file (fileName);
@@ -45,6 +55,9 @@ void CONTROLLER::readFile() {
     file.close();
 }
 
+/*!
+ * \brief write all elems in the file
+ */
 TEMPL
 void CONTROLLER::writeFile() {
     QFile file (fileName);
@@ -57,14 +70,28 @@ void CONTROLLER::writeFile() {
     file.close();
 }
 
+/*!
+ * \brief getter of the field elems
+ * \return the field elems
+ */
 TEMPL
-QVector<T*> & CONTROLLER::getElems() { return elems; }
+QVector<T*> & CONTROLLER::getElems() {
+    return elems;
+}
 
+/*!
+ * \brief add an element to elems
+ * \param elem, the element to add
+ */
 TEMPL
 void CONTROLLER::addElem(T * elem) {
     elems.push_back(elem);
 }
 
+/*!
+ * \brief remove an element to elems
+ * \param elem, the element to remove
+ */
 TEMPL
 bool CONTROLLER::removeElem(T * elem) {
     typename QVector<T*>::iterator it =

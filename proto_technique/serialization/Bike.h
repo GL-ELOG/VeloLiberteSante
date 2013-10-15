@@ -10,7 +10,6 @@
 #define BIKE_H
 
 #include <QDate>
-#include <QString>
 #include <QDataStream>
 
 #include "Serializable.h"

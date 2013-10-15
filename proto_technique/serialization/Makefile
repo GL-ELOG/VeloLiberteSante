@@ -7,6 +7,8 @@ LIBS          = -lQt5Core
 LFLAGS        = -L/opt/Qt/5.1.1/gcc/lib
 
 OBJECTS       = Bike.o \
+				Emplacement.o \
+				Station.o \
 				Controller.o \
 				main.o
 

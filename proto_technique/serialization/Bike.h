@@ -24,14 +24,14 @@ class Bike : public Serializable {
     quint16 kmTravelled;
 
     /*!
-     * \brief serialize a Bike
+     * \brief serialize a Bike (inherited from Serializable)
      * \param the output stream where to serialize
      * \return the stream after serialization
      */
     virtual QDataStream & serialize   (QDataStream & os) const;
 
     /*!
-     * \brief deserialize a Bike
+     * \brief deserialize a Bike (inherited from Serializable)
      * \param the input stream where to deserialize
      * \return the stream after deserialization
      */

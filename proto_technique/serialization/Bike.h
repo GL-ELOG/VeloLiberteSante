@@ -17,12 +17,12 @@
 class Bike : public Serializable {
   protected:
     qint16 id;
-    QString libelle;
+    QString libel;
     virtual QDataStream & serialize   (QDataStream & os) const;
     virtual QDataStream & deserialize (QDataStream & is) ;
 
   public:
-    Bike(int id = 0, QString libelle = "");
+    Bike(int id = 0, QString libel = "");
     virtual ~Bike();
 
     int getId();

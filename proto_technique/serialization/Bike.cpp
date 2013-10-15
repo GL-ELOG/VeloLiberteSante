@@ -12,8 +12,8 @@
 
 #include "Bike.h"
 
-Bike::Bike(int id, QString libelle)
-: id (id), libelle (libelle)
+Bike::Bike(int id, QString libel)
+: id (id), libel (libel)
 {}
 
 Bike::~Bike() {}
@@ -25,7 +25,7 @@ void Bike::setId(int id) { this->id = id; }
 QDataStream & Bike::serialize (QDataStream & os) const {
     return os << QString("VELO")
               << (qint16)this->id
-              << this->libelle;
+              << this->libel;
 }
 
 QDataStream & Bike::deserialize (QDataStream & is) {
@@ -35,5 +35,5 @@ QDataStream & Bike::deserialize (QDataStream & is) {
         is.setStatus(QDataStream::ReadCorruptData);
         return is;
     }
-    return is >> this->id >> this->libelle;
+    return is >> this->id >> this->libel;
 }

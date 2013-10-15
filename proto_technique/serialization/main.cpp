@@ -7,16 +7,35 @@
  *
  */
 
+#include <QFile>
+#include <QDataStream>
 #include <QDebug>
-#include <sstream>
-#include <iostream>
 
 #include "Bike.h"
 #include "Controller.h"
 
 using namespace std;
 
+namespace {
+
+    void generate() {
+        QFile file (QString("bikes.txt"));
+        file.open(QIODevice::WriteOnly);
+        QDataStream out (&file);
+
+        for (unsigned i(0); i < 5; ++i) {
+            out << QString("VELO")
+                << (qint16)i
+                << QString("le velo no ").append(QString::number(i));
+        }
+        file.flush();
+        file.close();
+    }
+
+}
+
 int main() {
+    /* generate(); */
 
     Bike b0 (1, "un_velo");
     Bike b1 (2, "un_autre_velo");
@@ -29,21 +48,7 @@ int main() {
     cout << "on a reussi a extraire b1 : " << b1 << endl;
     /* serialization */
 
-    /* controller */
-    Bike * b2 = new Bike(3, "un velo mortel");
-    {
-        Controller<Bike> bikeController ("bikes.txt");
-        bikeController.addElem(b2);
-
-        QVector<Bike*> bikes = bikeController.getElems();
-        /* qDebug() << "controller has " << bikes.size() << " bikes" << endl; */
-        for (int i(0); i < bikes.size(); ++i) {
-            // :'(
-            /* qDebug() << *bikes[i] << endl; */
-        }
-    }
-    /* qDebug() << "et mainteant b2 est mort : " << b2 << endl; */
-    /* controller */
+    Controller<Bike> bikeControll ("bikes.txt");
 
     return 0;
 }

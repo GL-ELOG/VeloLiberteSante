@@ -1,7 +1,7 @@
 /*
  * @File Serializable.h
  *
- * @Author eloi
+ * @Author Eloi PERDEREAU
  *
  * @Date 13-10-2013
  *

@@ -1,7 +1,7 @@
 /*
  * @File Controller.h
  *
- * @Author p1002650
+ * @Author Eloi PERDEREAU
  *
  * @Date 14-10-2013
  *

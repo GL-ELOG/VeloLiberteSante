@@ -1,7 +1,7 @@
 /*
  * @File main.cxx
  *
- * @Author eloi
+ * @Author Eloi PERDEREAU
  *
  * @Date 13-10-2013
  *

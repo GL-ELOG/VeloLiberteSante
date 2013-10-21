@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ConsulterAbonne</class>
+ <widget class="QDialog" name="ConsulterAbonne">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>619</width>
+    <height>540</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"> QPushButton {
+     border: 1px solid #1E7FCB74D0F1;
+     border-radius: 4px;
+     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                       stop: 0 #1E7FCB, stop: 0.4 #74D0F1,
+									   stop: 0.5 #74D0F1, stop: 1.0 #1E7FCB);
+     min-width: 80px;
+	 min-height: 25px;
+	 font-weight: bold;
+	 font-size:10px;
+	 border-color: #1E7FCB;
+ }
+ 
+ QPushButton:pressed {
+     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                       stop: 0 #BB0B0B, stop: 0.4 #E32636,
+									   stop: 0.5 #E32636, stop: 1.0 #BB0B0B);
+	font-weight: bold;
+	color:white;
+	border-color: #BB0B0B;
+ }
+
+ QPushButton:hover {
+     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                       stop: 0 #BB0B0B, stop: 1 #E32636,
+									   stop: 0.5 #E32636, stop: 1.0 #BB0B0B);
+	 color:white;
+	 font-weight: bold;
+	 border-color: #E32636;
+ }
+
+ QPushButton:flat {
+     border: none; /* no border for a flat push button */
+ }</string>
+  </property>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>500</y>
+     <width>172</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="imprimerBtnConAbo">
+      <property name="text">
+       <string>Imprimer</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="quitterBtnConAbo">
+      <property name="text">
+       <string>Quitter</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

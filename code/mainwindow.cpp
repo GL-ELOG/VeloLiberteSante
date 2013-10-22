@@ -11,6 +11,12 @@
 #include "consultervelo.h"
 #include "ui_mainwindow.h"
 #include <QHeaderView>
+#include <QSortFilterProxyModel>
+#include "Station.h"
+#include "Emplacement.h"
+#include "Bike.h"
+
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,13 +24,29 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    Controller<Station> staController("stations.txt");
+    std::cout << staController.getElems().size() << std::endl;
+
+    StationTableModel model (staController.getElems());
+    QSortFilterProxyModel * proxyModel = new QSortFilterProxyModel(this);
+    proxyModel->setSourceModel(&model);
+
+    ui->tableViewStations->setModel(proxyModel);
+    ui->tableViewStations->setSortingEnabled(true);
+    ui->tableViewStations->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableViewStations->horizontalHeader()->setStretchLastSection(true);
+    ui->tableViewStations->verticalHeader()->hide();
+    ui->tableViewStations->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableViewStations->setSelectionMode(QAbstractItemView::SingleSelection);
+
+
     /*Ajuste la largeur des colonnes du QTableWidget pour les stations*/
-    ui->tableWidgetStations->horizontalHeader()->resizeSection(0, 60); /*Identifiant*/
-    ui->tableWidgetStations->horizontalHeader()->resizeSection(1, 140);/*Localisation*/
-    ui->tableWidgetStations->horizontalHeader()->resizeSection(2, 90);/*Nombre de bornes*/
-    ui->tableWidgetStations->horizontalHeader()->resizeSection(3, 120);/*Nombres de bornes libres*/
-    ui->tableWidgetStations->horizontalHeader()->resizeSection(4, 125);/*Nombre de bornes occupées*/
-    ui->tableWidgetStations->horizontalHeader()->resizeSection(5, 100);/*Nombre de bornes HS*/
+    //ui->tableWidgetStations->horizontalHeader()->resizeSection(0, 60); /*Identifiant*/
+    //ui->tableWidgetStations->horizontalHeader()->resizeSection(1, 140);/*Localisation*/
+    //ui->tableWidgetStations->horizontalHeader()->resizeSection(2, 90);/*Nombre de bornes*/
+    //ui->tableWidgetStations->horizontalHeader()->resizeSection(3, 120);/*Nombres de bornes libres*/
+    //ui->tableWidgetStations->horizontalHeader()->resizeSection(4, 125);/*Nombre de bornes occupées*/
+    //ui->tableWidgetStations->horizontalHeader()->resizeSection(5, 100);/*Nombre de bornes HS*/
 
     /*Ajuste la largeur des colonnes du QTableWidget pour les bornes*/
     ui->tableWidgetBornes->horizontalHeader()->resizeSection(0, 60);/*Identifiant*/
@@ -51,7 +73,7 @@ MainWindow::~MainWindow()
 /*Stations*/
 void MainWindow::on_stationBtnAj_clicked()
 {
-    AjouterStation *formulaire= new AjouterStation();
+    AjouterStation *formulaire= new AjouterStation(ui->tableViewStations);
     formulaire->show();
 }
 void MainWindow::on_stationBtnMod_clicked()

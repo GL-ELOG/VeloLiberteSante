@@ -4,8 +4,10 @@
 #include <QTextStream>
 #include "ui_ajouterstation.h"
 
-AjouterStation::AjouterStation(QWidget *parent) :
+AjouterStation::AjouterStation(QTableView * staTable, QWidget *parent) :
     QDialog(parent),
+    staController ("stations.txt"),
+    staTable (staTable),
     ui(new Ui::AjouterStation)
 {
     ui->setupUi(this);

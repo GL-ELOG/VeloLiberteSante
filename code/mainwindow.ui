@@ -188,7 +188,7 @@
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="0" column="0">
-          <widget class="QTableWidget" name="tableWidgetStations">
+          <widget class="QTableView" name="tableViewStations">
            <property name="palette">
             <palette>
              <active/>
@@ -199,90 +199,6 @@
            <property name="alternatingRowColors">
             <bool>true</bool>
            </property>
-           <property name="sortingEnabled">
-            <bool>true</bool>
-           </property>
-           <property name="rowCount">
-            <number>0</number>
-           </property>
-           <attribute name="horizontalHeaderStretchLastSection">
-            <bool>true</bool>
-           </attribute>
-           <attribute name="verticalHeaderStretchLastSection">
-            <bool>true</bool>
-           </attribute>
-           <column>
-            <property name="text">
-             <string>Identifiant</string>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>7</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Localisation</string>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>7</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nombre de bornes</string>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>7</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nombre de bornes libres</string>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>7</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nombre de borne occupées</string>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>7</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Nombre de borne HS</string>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>7</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-           </column>
           </widget>
          </item>
         </layout>

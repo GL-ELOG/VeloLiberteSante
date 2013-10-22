@@ -27,7 +27,9 @@ SOURCES += main.cpp\
     Bike.cpp \
     Controller.cpp \
     Station.cpp \
-    Emplacement.cpp
+    Emplacement.cpp \
+    stationtablemodel.cpp \
+    serializable_main.cpp
 
 HEADERS  += mainwindow.h \
     ajouterstation.h \
@@ -44,7 +46,8 @@ HEADERS  += mainwindow.h \
     Controller.h \
     Station.h \
     Serializable.h \
-    Emplacement.h
+    Emplacement.h \
+    stationtablemodel.h
 
 FORMS    += mainwindow.ui \
     ajouterstation.ui \

@@ -19,7 +19,7 @@ class Emplacement : public Serializable {
   protected:
 
     /* EmpState state; */
-    qint16 state;
+    qint16 state;   // 0 = free, 1 = occupied, 2 = hs
     Bike * bike;
 
     /*!
